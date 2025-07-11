@@ -1,0 +1,2180 @@
+<html><head><base href="/" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Protected Page with Blurred Background</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://source.unsplash.com/random/1920x1080') center/cover no-repeat fixed;
+            min-height: 100vh;
+        }
+
+        /* Extreme blur for background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: -1;
+        }
+
+        #content {
+            filter: blur(50px);
+            pointer-events: none;
+            padding: 20px;
+            color: #333;
+            position: relative;
+            z-index: 1;
+        }
+
+        #password-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        #password-window {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            max-width: 400px;
+            width: 90%;
+        }
+
+        #password-window h2 {
+            margin: 0 0 20px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        #password-window input[type="password"] {
+            padding: 12px;
+            font-size: 16px;
+            width: 80%;
+            margin-bottom: 20px;
+            border: 2px solid rgba(0, 123, 255, 0.3);
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+
+        #password-window input[type="password"]:focus {
+            outline: none;
+            border-color: #007BFF;
+            box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+        }
+
+        #password-window button {
+            padding: 12px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+        }
+
+        #password-window button:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .content-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="password-overlay">
+    <div id="password-window">
+        <h2>Vpišite geslo</h2>
+        <input type="password" id="password" placeholder="Geslo" onkeypress="handleKeyPress(event)">
+        <br>
+        <button onclick="checkPassword()">Potrdite</button>
+    </div>
+</div>
+
+<script>
+    const correctPassword = "stik"; // Set your password here
+
+    function checkPassword() {
+        const inputPassword = document.getElementById("password").value;
+
+        if (inputPassword === correctPassword) {
+            document.getElementById("password-overlay").style.opacity = "0";
+            document.getElementById("password-overlay").style.transition = "opacity 0.5s ease";
+            setTimeout(() => {
+                document.getElementById("password-overlay").style.display = "none";
+                document.getElementById("content").style.filter = "none";
+                document.getElementById("content").style.transition = "filter 0.5s ease";
+                document.getElementById("content").style.pointerEvents = "auto";
+            }, 500);
+        } else {
+            alert("Incorrect password. Please try again.");
+        }
+    }
+
+    function handleKeyPress(event) {
+        if (event.key === "Enter") {
+            checkPassword();
+        }
+    }
+
+    // Add smooth transition when the page loads
+    window.addEventListener('load', () => {
+        document.body.style.transition = "all 0.5s ease";
+    });
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+<html><head><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base target="_blank"><base href="/">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Stikshop B2B</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background-color: #f5f5f5;
+}
+
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1.5rem 4rem; /* Increased padding */
+    background: rgba(255, 255, 255, 0.95); /* Slightly transparent */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #7198E5, #5C7EC7);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+}
+
+.contact-info {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #555;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+}
+
+.contact-item:hover {
+    background: rgba(113, 152, 229, 0.1);
+    transform: translateY(-2px);
+}
+
+.contact-item svg {
+    width: 18px;
+    height: 18px;
+    stroke: #7198E5;
+}
+
+.cart-icon {
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.8rem;
+    border-radius: 50%;
+    background: rgba(113, 152, 229, 0.1);
+}
+
+.cart-icon::after {
+    content: attr(data-items);
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ff4444;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    display: none;
+}
+
+.cart-icon.has-items::after {
+    display: block;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 120px auto 0; /* Increased from 100px to 120px */
+    padding: 0 20px;
+}
+
+.categories {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    padding: 0 1rem;
+}
+
+.category-btn {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background: white;
+    color: #555;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.95rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.category-btn:hover {
+    background: rgba(113, 152, 229, 0.1);
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    background: #7198E5;
+    color: white;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.product-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem; /* Updated padding for better spacing */
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  display: flex; /* Enables vertical layout */
+    flex-direction: column; /* Stack content vertically */
+    justify-content: flex-start; /* Align content to the top */
+    box-sizing: border-box; /* Include padding in size calculations */
+    min-height: 400px; /* Optional: Set a minimum height for smaller content */
+    width: 100%; /* Ensures consistency in width */
+}
+
+.product-card:hover {
+    
+}
+
+.product-image {
+    width: 100%;
+  aspect-ratio: 1 / 1;
+    position: relative;
+    padding-bottom: 100%; /* Creates a 1:1 aspect ratio container */
+    background: #f0f0f0;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+}
+
+.product-image svg,
+.product-image img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* This ensures images cover the area while maintaining aspect ratio */
+}
+
+.product-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+    overflow: visible; /* Allows the text to expand */
+    
+}
+
+.product-price {
+    font-weight: bold;
+    color: #7198E5; /* Changed from #2ecc71 to pastel blue */
+    margin-bottom: 1rem;
+}
+
+.add-to-cart {
+    margin-top: auto;
+    width: 100%;
+    padding: 0.8rem;
+    background: #7198E5; /* Changed from #2ecc71 to pastel blue */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.add-to-cart:hover {
+    background: #5C7EC7; /* Changed from #27ae60 to darker pastel blue */
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+}
+
+.modal-content {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+    max-height: 90vh; /* Limit height to 90% of viewport height */
+    overflow-y: auto; /* Enable vertical scrolling */
+    position: relative; /* For positioning the close button */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 1rem; /* Add some space at the bottom */
+}
+
+input, textarea {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.submit-btn {
+    background: #7198E5; /* Changed from #2ecc71 to pastel blue */
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease;
+}
+
+.submit-btn:hover {
+    background: #5C7EC7; /* Changed from #27ae60 to darker pastel blue */
+}
+
+.close-btn {
+    position: sticky;
+    top: 0;
+    right: 1rem;
+    background: white;
+    z-index: 1002;
+    padding: 0.5rem;
+}
+
+#cart-summary {
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    margin-top: 1rem; /* Add some spacing for cart summary */
+}
+
+#cart-items {
+    margin-bottom: 1rem;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.quantity-input {
+    width: 60px;
+    padding: 0.3rem;
+    text-align: center;
+}
+
+.total {
+    text-align: right;
+    padding-top: 1rem;
+    font-size: 1.1rem;
+}
+
+.modal-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+    background: #7198E5;
+    border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+    background: #5C7EC7;
+}
+
+.admin-btn {
+   
+display: none;
+
+ background: #ff9800;
+    color: white;
+}
+
+.admin-btn:hover {
+    background: #f57c00;
+}
+
+.admin-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.admin-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: #f8f9fa;
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+.admin-form select {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.admin-form h3 {
+    margin-bottom: 1rem;
+}
+
+.copy-btn {
+   
+display: none;
+
+ background: #4CAF50; /* Green background */
+    color: white;
+}
+
+.copy-btn:hover {
+    background: #388E3C;
+}
+
+@media (max-width: 1200px) {
+    .products {
+        grid-template-columns: repeat(3, 1fr); /* Show 3 items per row on larger tablets */
+        gap: 15px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
+}
+
+@media (max-width: 992px) {
+    .products {
+        grid-template-columns: repeat(2, 1fr); /* Show 2 items per row on tablets */
+        gap: 20px; /* Increased gap for better spacing */
+    }
+    
+    .navbar {
+        padding: 1.2rem 2rem;
+    }
+    
+    .product-card {
+        padding: 1.5rem; /* Increased padding for better touch targets */
+    }
+    
+    .product-image {
+        padding-bottom: 100%; /* Keep 1:1 aspect ratio */
+    }
+}
+
+@media (max-width: 768px) {
+    .products {
+        grid-template-columns: 1fr; /* Single column on phones */
+        gap: 25px; /* Increased gap for better separation */
+        padding: 0 10px; /* Add some padding on the sides */
+    }
+
+    .product-card {
+        max-width: 500px; /* Limit width on phones for better readability */
+        margin: 0 auto; /* Center the cards */
+        padding: 1.5rem;
+    }
+
+    .product-image {
+        padding-bottom: 75%; /* 4:3 aspect ratio on mobile for better visibility */
+    }
+
+    .product-title {
+        font-size: 1.3rem; /* Larger title on mobile */
+        margin: 1rem 0 0.5rem;
+    }
+
+    .product-description {
+        font-size: 1rem; /* Slightly larger description text */
+        margin-bottom: 1rem;
+        -webkit-line-clamp: 4; /* Show more lines of description on mobile */
+    }
+
+    .add-to-cart {
+        padding: 1rem; /* Larger button for better touch target */
+        font-size: 1.1rem;
+    }
+
+    .categories {
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .category-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1.4rem;
+    }
+
+    .contact-info {
+        display: none; /* Hide contact info on very small screens */
+    }
+
+    .container {
+        margin-top: 90px; /* Adjusted for mobile to maintain proportions */
+    }
+
+    .product-card {
+        padding: 1.2rem;
+    }
+}
+</style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo"><a href="#" style="text-decoration: none;" onclick="window.scrollTo(0, 0); return false;">Elektromaterial</a></div> 
+        <div class="contact-info">
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                </svg>
+                <span>+386 (0)31 302 687
+</span>
+            </div>
+            <div class="contact-item">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>info@stikshop.eu</span>
+            </div>
+        </div>
+        <div class="cart-icon" onclick="openModal()">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="categories">
+            <button class="category-btn active" data-category="all">Vse kategorije</button>
+            
+          
+            <button class="category-btn" data-category="nerazdelilci">Notranji etažni razdelilci</button><button class="category-btn" data-category="zmomare">Zunanje merilne omare</button><button class="category-btn" data-category="prostostojeceomare">Prostostoječe merilne omare</button><button class="category-btn" data-category="tekaomarice"> Telefonske in kabelske omarice</button><button class="category-btn" data-category="razvodnicepod">Razvodnice podomet</button><button class="category-btn" data-category="razvodnicenad">Razvodnice nadomet</button><button class="category-btn" data-category="zbiralkeiz">Izolirane zbiralke</button><button class="category-btn" data-category="prekritja">Prekritja in pokrovi</button><button class="category-btn" data-category="zidnivlozki">Zidni Vložki</button><button class="category-btn" data-category="sponkeobjemke">Sponke in objemke</button><button class="category-btn admin-btn" onclick="openAdminModal()">Admin</button>
+            <button class="category-btn copy-btn" onclick="copySourceCode()">Copy code</button>
+        </div>
+        <div class="products">
+            <div class="product-card" data-category="furniture" style="">
+                <div class="product-image">
+                    <img src="https://i.imgur.com/fZtQ0pN.jpeg" alt="PERT1" width="100%" height="100%">
+        </div>
+              
+           <br> <br> <br>  <br> 
+              
+        <h3 class="product-title">Vse kategorije artiklov</h3>
+                <p class="product-description">Izbor elektromateriala iz proizvodnje - več kot 30 let tradicije - brezplačna dostava pri naročilih nad 150,00 EUR</p>
+                
+       
+          
+         
+            
+          
+         
+          
+            </div>
+        <div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/8rkGnH8.jpeg" alt="PERT1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PERT 1</h3>
+        <p class="product-description">Omarica podomet 12 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">VPC brez DDV (netto): 17.82 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/OMxPeVS.jpeg" alt="PERT 2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PERT 2</h3>
+        <p class="product-description">Omarica podomet 24 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">VPC brez DDV (netto): 20.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/TSsLHPF.jpeg" alt="PERT 3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PERT 3</h3>
+        <p class="product-description">Omarica podomet 36 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">VPC brez DDV (netto): 27,60 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/NtTSaAs.jpeg" alt="NERT 1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">NERT 1</h3>
+        <p class="product-description">Omarica nadomet 12 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">23.64 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/unCFSxs.jpeg" alt="NERT 2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">NERT 2</h3>
+        <p class="product-description">Omarica nadomet 24 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">26.69 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/xcuHJgk.jpeg" alt="NERT 3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">NERT 3</h3>
+        <p class="product-description">Omarica nadomet 36 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">36.60 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="nerazdelilci" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/KALNGb8.jpeg" alt="PERT 0, NERT 0" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PERT 0, NERT 0</h3>
+        <p class="product-description">Omarica podomet 6 avt. varovalk, vgrajene priključne sponke</p>
+        <p class="product-price">16.77 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/EY5rJbz.jpeg" alt="OMARICA PMOT - 1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 1</h3>
+        <p class="product-description">Zunanja merilna omara š300 x v440 x g190</p>
+        <p class="product-price">67.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/da68OEe.jpeg" alt="OMARICA PMOT - 2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 2</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v600 x g190</p>
+        <p class="product-price">117.42 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Zi5UffA.jpeg" alt="OMARICA PMOT - 1K" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 1K</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v440 x g190</p>
+        <p class="product-price">83.87 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/qVpRKbi.jpeg" alt="OMARICA PMOT-2 / 3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT-2 / 3</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v600 x g190</p>
+        <p class="product-price">124.25 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/1x7ffTm.jpeg" alt="OMARICA PMOT - 1K+1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 1K+1</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v750 x g190</p>
+        <p class="product-price">134.20 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/v8fEbOf.jpeg" alt="OMARICA PMOT - 2K" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 2K</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v890 x g190</p>
+        <p class="product-price">167.75 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/v8fEbOf.jpeg" alt="OMARICA PMOT - 2+1K" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 2+1K</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v1050 x g190</p>
+        <p class="product-price">183.00 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/0N8jY5P.jpeg" alt="OMARICA PMOT - 2+1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 2+1</h3>
+        <p class="product-description">Zunanja merilna omara š440 x 750 x 190</p>
+        <p class="product-price">167.75 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/yGll3w0.jpeg" alt="OMARICA PMOT - 2+1 / 3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 2+1 / 3</h3>
+        <p class="product-description">Zunanja merilna omara š440 x 750 x 190</p>
+        <p class="product-price">174.58 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/FSnbhLJ.jpeg" alt="OMARICA PMOT - 4" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA PMOT - 4</h3>
+        <p class="product-description">Zunanja merilna omara š600 x v890 x g190</p>
+        <p class="product-price">236.37 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/qMXcApI.jpeg" alt="PMOT-1/S" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-1/S</h3>
+        <p class="product-description">PMOT-1/S</p>
+        <p class="product-price">89.97 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/QbSg7ej.jpeg" alt="PMOT-1K/S" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-1K/S</h3>
+        <p class="product-description">PMOT-1K/S</p>
+        <p class="product-price">106.75 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/iwCCQGg.jpeg" alt="PMOT-2/S" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-2/S</h3>
+        <p class="product-description">PMOT-2/S</p>
+        <p class="product-price">140.30 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Z3bqrr2.jpeg" alt="PMOT-4+2K" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-4+2K</h3>
+        <p class="product-description">Po želji sestavljena</p>
+        <p class="product-price">404.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/nP0aCmu.jpeg" alt="PMOT-1+2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-1+2</h3>
+        <p class="product-description">Zunanja merilna omara š440 x 750 x 190</p>
+        <p class="product-price">167.65 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zmomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/A51d7s4.jpeg" alt="PMOT-1K+2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-1K+2</h3>
+        <p class="product-description">Zunanja merilna omara š440 x v1050 x g190</p>
+        <p class="product-price">183.00 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/SlTHdKO.jpeg" alt="PMOT 2 ( BS )" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 2K ( BS )</h3>
+        <p class="product-description">Prostostoječi betonski steber z merilno omaro PMOT 2K</p>
+        <p class="product-price">610.00 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/SlTHdKO.jpeg" alt="PMOT 4 ( BS )" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 4 ( BS )</h3>
+        <p class="product-description"> Prostostoječi betonski steber z merilno omaro PMOT 4</p>
+        <p class="product-price">677.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/pbXTsys.jpeg" alt=" PMOT 1+1 ( PS )" width="100%" height="100%">
+        </div>
+        <h3 class="product-title"> PMOT 1+1 / PS</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara  PMOT 1+1/PS</p>
+        <p class="product-price">373.62 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/pbXTsys.jpeg" alt="PMOT 1+1 ( PS ) tz" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 1+1 / PS / K</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara 1+1/PS/K, tritočkovno zapiranje</p>
+        <p class="product-price">404.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/0EUHYk5.jpeg" alt="PMOT 2K ( PS )" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 2K / PS</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara PMOT 2K/PS</p>
+        <p class="product-price"> 408.70 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/0EUHYk5.jpeg" alt="PMOT 2K ( PS ) tz" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 2K / PS / K</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara 2K/PS/K, tritočkovno zapiranje</p>
+        <p class="product-price">434.62 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/czLWKTY.jpeg" alt="PMOT 4 ( PS )" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 4 / PS</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara PMOT 4/PS</p>
+        <p class="product-price">571.87 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/czLWKTY.jpeg" alt="PMOT 4 ( PS ) tz" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 4 / PS / K</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara PMOT 4/PS/K, tritočkovno zapiranje</p>
+        <p class="product-price">602.37 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/0EUHYk5.jpeg" alt="PMOT-2K+2k/PS" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT 2K+2K / PS</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara PMOT 2K+2K/PS</p>
+        <p class="product-price">770.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/WbfS6Ky.jpeg" alt="PMOT-4+4/PS" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-4+4/PS</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara PMOT-4+4/PS</p>
+        <p class="product-price">1143.75 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prostostojeceomare" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/gOH0k9t.jpeg" alt="PMOT-4x1/PS" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PMOT-1x4 / PS</h3>
+        <p class="product-description">Prostostoječa zunanja merilna omara PMOT-1x4/PS</p>
+        <p class="product-price">587.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/VVNnCps.jpeg" alt="OMARICA TOT-P1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA TOT-P1</h3>
+        <p class="product-description">Telefonska omarica (napis telefon), pod-omet</p>
+        <p class="product-price">22.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/E5Zo9dE.jpeg" alt="OMARICA KKST-P1 " width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA KKST-P1 </h3>
+        <p class="product-description">Kabelska omarica (napis KKS), pod-omet</p>
+        <p class="product-price">22.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/VVNnCps.jpeg" alt="OMARICA OT-P1 " width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA OT-P1 </h3>
+        <p class="product-description">Telefonska omarica (brez napisa), pod-omet</p>
+        <p class="product-price">22.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/KFGostJ.jpeg" alt="OMARICA TOT-N1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA TOT-N1</h3>
+        <p class="product-description">Telefonska omarica  (napis telefon), nad-omet</p>
+        <p class="product-price">23.64 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/XNvNRoB.jpeg" alt="OMARICA KKST-N1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA KKST-N1</h3>
+        <p class="product-description">Kabelska omarica  (napis KKS), nad-omet</p>
+        <p class="product-price">23.64 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/XNvNRoB.jpeg" alt="OMARICA OT-N1" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA OT-N1</h3>
+        <p class="product-description">Telefonska omarica  (brez napisa), nad-omet</p>
+        <p class="product-price">23.64 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/qMXcApI.jpeg" alt="OMARICA TOT / KKST - PMOT 1 s streho" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA TOT / KKST - PMOT 1 s streho</h3>
+        <p class="product-description">Telefonska ali kabelska OMARICA TOT / KKST - PMOT 1 s streho</p>
+        <p class="product-price">89.97 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/QbSg7ej.jpeg" alt="OMARICA TOT / KKST - PMOT 1K s streho" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA TOT / KKST - PMOT 1K s streho</h3>
+        <p class="product-description">Telefonska ali kabelska OMARICA TOT / KKST - PMOT 1K s streho</p>
+        <p class="product-price">106.75 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="tekaomarice" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/iwCCQGg.jpeg" alt="OMARICA TOT / KKST - PMOT 2 s streho" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">OMARICA TOT / KKST - PMOT 2 s streho</h3>
+        <p class="product-description">Telefonska ali kabelska OMARICA TOT / KKST - PMOT 2 s streho</p>
+        <p class="product-price">140.30 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/UExUdDI.jpeg" alt="RIP / N" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RIP / N</h3>
+        <p class="product-description">Razvodnica za izenačitev potenciala (notranja)</p>
+        <p class="product-price">12.08 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/X7tfbGH.jpeg" alt="RIP / Z" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RIP / Z</h3>
+        <p class="product-description">Razvodnica za izenačitev potenciala (zunanja)</p>
+        <p class="product-price">13.42 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Hc8ivbf.jpeg" alt="RAZVODNICA MB 68x55 VOTLE STENE" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA MB 68x55 VOTLE STENE</h3>
+        <p class="product-description">Podometna razvodnica</p>
+        <p class="product-price">0.85 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/a25wX6Y.jpeg" alt="RAZVODNICA MB 68x40 VOTLE STENE" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA MB 68x40 VOTLE STENE</h3>
+        <p class="product-description">Podometna razvodnica</p>
+        <p class="product-price">0.79 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Na5Bkzl.jpeg" alt="RAZVODNICA MB 80x45 VOTLE STENE" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA MB 80x45 VOTLE STENE</h3>
+        <p class="product-description">Podometna razvodnica</p>
+        <p class="product-price">1.04 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/NWTSmWF.jpeg" alt="RAZVODNICA fi 60 PLITKA " width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA fi 60 PLITKA </h3>
+        <p class="product-description">Sestavljiva podometna razvodnica</p>
+        <p class="product-price">razprodano</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/NWTSmWF.jpg" alt="RAZVODNICA fi 60 GLOBOKA " width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA fi 60 GLOBOKA </h3>
+        <p class="product-description">Sestavljiva podometna razvodnica</p>
+        <p class="product-price">razprodano</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/XIuT6gp.jpeg" alt="VMESNIK MB 60-03" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">VMESNIK MB 60-03</h3>
+        <p class="product-description">Sestavni vmesnik za podometno razvodnico</p>
+        <p class="product-price">0.07 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/G3VWTBi.jpg" alt="RAZVODNICA MB 78-80 P/O" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA MB 78-80 P/O</h3>
+        <p class="product-description">Podometna razvodnica</p>
+        <p class="product-price">0.27 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/U4StH0k.jpg" alt="POKROV ZA RAZVODNICO MB 78-80" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">POKROV ZA RAZVODNICO MB 78-80</h3>
+        <p class="product-description">Pokrov za podometno razvodnico</p>
+        <p class="product-price">0.23 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/V6Le50S.jpeg" alt="PATENT POKROV ZA RAZVODNICO MB 78-80" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PATENT POKROV ZA RAZVODNICO MB 78-80</h3>
+        <p class="product-description">Pokrov za razvodnico podomet</p>
+        <p class="product-price">1.06 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/ZULpLUJ.jpeg" alt="RAZVODNICA DPN 66x66x38 IP44" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 66x66x38 IP44</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">1.07 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/vmdfyGF.jpeg" alt="RAZVODNICA DPN 80x80x40 IP44" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 80x80x40 IP44</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">1.14 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/3uuYuyd.jpeg" alt="RAZVODNICA OG 80x80x43 IP55" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA OG 80x80x43 IP55</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">1.98 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Au5Kw8n.jpeg" alt="RAZVODNICA OG 80x80x43 IP55 Z UŠESI" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA OG 80x80x43 IP55 Z UŠESI</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">2.18 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Qy6rwK8.jpeg" alt="RAZVODNICA DPN 100x100x50 IP54" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 100x100x50 IP54</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">2.52 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Qy6rwK8.jpeg" alt="RAZVODNICA DPN 100x100x50 IP54 / U" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 100x100x50 IP54 / U (z uvodnicami)</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">3.66 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/5qN8bHL.jpeg" alt="RAZVODNICA DPN 120x160x70 IP54" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 120x160x70 IP54</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">4.73 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/FbD1xzB.jpeg" alt="RAZVODNICA DPN 120x160x70 / U IP54" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 120x160x70 / U IP54  (z uvodnicami)</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">6.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/5qN8bHL.jpeg" alt="RAZVODNICA DPN 120x160x70 z vrati" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 120x160x70 z vrati</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">5.34 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/fGC8utU.jpeg" alt="RAZVODNICA DPN 140x180x70 IP54" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 140x180x70 IP54</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">5.34 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/fGC8utU.jpeg" alt="RAZVODNICA DPN 140x180x70 / U IP54" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 140x180x70 / U IP54 (z uvodnicami)</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">7.01 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/fGC8utU.jpeg" alt=" RAZVODNICA DPN 140x180x70 z vrati" width="100%" height="100%">
+        </div>
+        <h3 class="product-title"> RAZVODNICA DPN 140x180x70 z vrati</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">6.86 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/DvrzygQ.jpeg" alt="RAZVODNICA DPN 140x180x120 IP54" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 140x180x120 IP54</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">9.76 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/DvrzygQ.jpeg" alt="RAZVODNICA DPN 140x180x120 z vrati" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 140x180x120 z vrati</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">11.13 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 240X190X90 IP56" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 240X190X90 IP56</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">11.28 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 240x190x90 / U IP56" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 240x190x90 / U IP56  (z uvodnicami)</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">13.72 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 240x190x90 z vrati" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 240x190x90 z vrati</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">13.72 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 240X190X90 / Prozorna" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 240X190X90 / Prozorna</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">14.64 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/DvrzygQ.jpeg" alt="RAZVODNICA DPN 240x190x140" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 240x190x140</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">15.10 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/DvrzygQ.jpeg" alt=" RAZVODNICA DPN 240x190x140 z vrati" width="100%" height="100%">
+        </div>
+        <h3 class="product-title"> RAZVODNICA DPN 240x190x140 z vrati</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">15.55 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 300X220X120 IP56" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 300X220X120 IP56</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">27.67 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 300X220X120 / U IP56" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 300X220X120 / U IP56 (z uvodnicami)</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">31.72 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 380X300X120 IP56" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 380X300X120 IP56</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">39.04 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/199mkPG.jpeg" alt="RAZVODNICA DPN 380X300X120 / U  IP56" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">RAZVODNICA DPN 380X300X120 / U  IP56 (z uvodnicami)</h3>
+        <p class="product-description">Nadometna razvodnica</p>
+        <p class="product-price">42.70 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicenad" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/4QADgvb.jpeg" alt="STALNI PRIKLJUČEK 85x85x26" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STALNI PRIKLJUČEK 85x85x26</h3>
+        <p class="product-description">Priključek za štedilnik</p>
+        <p class="product-price">4.42 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 10 mm2 3P 210 mm / 12" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 10 mm2 3P 210 mm / 12</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">5.37 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 16 mm2 3P 210 mm / 12" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 16 mm2 3P 210 mm / 12</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">6.47 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 10 mm2 3P 140 mm  / 8" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 10 mm2 3P 140 mm  / 8</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">4.39 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 16 mm2 3P 140 mm / 8" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 16 mm2 3P 140 mm / 8</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">5.86 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 10 mm2 3P 1000 mm" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 10 mm2 3P 1000 mm</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">18.30 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 16 mm2 3P 1000 mm" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 16 mm2 3P 1000 mm</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">21.96 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 10 mm2 1P 1000 mm" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 10 mm2 1P 1000 mm</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">7.08 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 16 mm2 1P 1000 mm" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 16 mm2 1P 1000 mm</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">9.52 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 10 mm2 1P 210 mm / 12" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 10 mm2 1P 210 mm / 12</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">1.95 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 16 mm2 1P 210 mm / 12" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 16 mm2 1P 210 mm / 12</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">3.42 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 10 mm2 1P 140 mm / 8" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 10 mm2 1P 140 mm / 8</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">1.85 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka 16 mm2 1P 140 mm / 8" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka 16 mm2 1P 140 mm / 8</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">3.32 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BwvtQjl.jpeg" alt="STIK zbiralka za EZN 25  1000 mm" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">STIK zbiralka za EZN 25  1000 mm</h3>
+        <p class="product-description">Izolirana zbiralka</p>
+        <p class="product-price">4.15 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zbiralkeiz" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/uf2Obvo.jpeg" alt="KONČNI POKROV za 3P izolirano zbiralko" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">KONČNI POKROV za 3P izolirano zbiralko</h3>
+        <p class="product-description">Zaščitni zaključni pokrov</p>
+        <p class="product-price">0.0244 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/VE7G4Da.jpeg" alt="KONČNA PLOŠČA" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">KONČNA PLOŠČA</h3>
+        <p class="product-description">Nosilec za prekritja avtomatskih varovalk</p>
+        <p class="product-price">2.20 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/gAtatxT.jpeg" alt="KOTNI PROFIL 1000 MM" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">KOTNI PROFIL 1000 MM</h3>
+        <p class="product-description">Kotno prekritje avtomatskih varovalk</p>
+        <p class="product-price">6.07 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/1MoaU7a.jpeg" alt="PLOŠČATI  PROFIL 1000 MM" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">PLOŠČATI  PROFIL 1000 MM</h3>
+        <p class="product-description">Ploščato prekritje avtomatskih varovalk</p>
+        <p class="product-price">6.07 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/AWflKH6.jpeg" alt="ZAPIRALNA LETEV SIVA / BELA 1M" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">ZAPIRALNA LETEV SIVA / BELA 1M</h3>
+        <p class="product-description">Zapiralna letev za prekritje avtomatskih varovalk</p>
+        <p class="product-price">5.34 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BMuMbl0.jpeg" alt="POKROV ZAŠČITNI EZN 25" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">POKROV ZAŠČITNI EZN 25</h3>
+        <p class="product-description">Zaščitni pokrov za varovalke</p>
+        <p class="product-price">0.61 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/7OIl83f.jpeg" alt="LETEV UNIVERZALNA 1 m" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">LETEV UNIVERZALNA 1 m</h3>
+        <p class="product-description">Pritrdilna letev</p>
+        <p class="product-price">2.44 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/7OIl83f.jpeg" alt="LETEV UNIVERZALNA 1,5 m" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">LETEV UNIVERZALNA 1,5 m</h3>
+        <p class="product-description">Pritrdilna letev</p>
+        <p class="product-price">razprodano</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/7OIl83f.jpeg" alt="LETEV UNIVERZALNA 2 m" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">LETEV UNIVERZALNA 2 m</h3>
+        <p class="product-description">Pritrdilna letev</p>
+        <p class="product-price">4.88 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="prekritja" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/7OIl83f.jpeg" alt="LETEV UNIVERZALNA GLOBOKA 2 m" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">LETEV UNIVERZALNA GLOBOKA 2 m</h3>
+        <p class="product-description">Pritrdilna letev</p>
+        <p class="product-price">8.72 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/baHI0tp.jpeg" alt="Zidni vložek ZVR 2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVR 2</h3>
+        <p class="product-description">Zidni vložek 6 + vijak križna glava.. Pakiranje: 50 x 20 kosov  v vrečki = 1000 v škatli</p>
+        <p class="product-price">0.09 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/BHA8x4a.jpeg" alt="Zidni vložek ZVR 3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVR 3</h3>
+        <p class="product-description">Zidni vložek 8 + vijak križna glava.. Pakiranje: 25 x 20 kosov  v vrečki = 500 v škatli</p>
+        <p class="product-price">0.11 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/qmdkoHX.jpeg" alt="Zidni vložek ZVR 4" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVR 4</h3>
+        <p class="product-description">Zidni vložek 10 + vijak križna glava.. Pakiranje: 30 x 10 kosov  v vrečki = 300 v škatli</p>
+        <p class="product-price">0.16 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/pePCOz1.jpeg" alt="Zidni vložek ZVR 4 MG" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVR 4 MG</h3>
+        <p class="product-description">Zidni vložek 10 + vijak matična glava.. Pakiranje: 30 x 10 kosov  v vrečki = 300 v škatli</p>
+        <p class="product-price">0.21 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/f1hozkD.jpeg" alt="Zidni vložek ZVR 5 MG" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVR 5 MG</h3>
+        <p class="product-description">Zidni vložek 12 + vijak matična glava.. Pakiranje: 15 x 10 kosov  v vrečki = 150 v škatli</p>
+        <p class="product-price">0.32 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/cH95tjq.jpeg" alt="Zidni vložek ZV3 + lestenčna kljuka" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV3 + lestenčna kljuka</h3>
+        <p class="product-description">Zidni vložek 8 + lestenčna kljuka.. Pakiranje: 25 x 20 kosov  v vrečki = 500 v škatli</p>
+        <p class="product-price">0.52 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/etvaB44.jpeg" alt="Zidni vložek HMV 6 hitromontažni vložek" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek HMV 6 hitromontažni vložek</h3>
+        <p class="product-description">Zidni vložek 6 + vijak križna glava.. Pakiranje: 12 x 50 kosov  v vrečki = 600 v škatli</p>
+        <p class="product-price">0.09 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/lNw6OOR.jpeg" alt="Zidni vložek ZVRM 2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVRM 2</h3>
+        <p class="product-description">Univerzalni vložek 6 + vijak križna glava.. Pakiranje: 50 x 20 kosov  v vrečki = 1000 v škatli</p>
+        <p class="product-price">0.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/mB7ghfR.jpeg" alt="Zidni vložek ZVRM 3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVRM 3</h3>
+        <p class="product-description">Univerzalni vložek 8 + vijak križna glava.. Pakiranje: 25 x 20 kosov  v vrečki = 500 v škatli</p>
+        <p class="product-price">0.16 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/rTnbYCX.jpeg" alt="Zidni vložek ZVRM 4" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVRM 4</h3>
+        <p class="product-description">Univerzalni vložek 10 + vijak križna glava.. Pakiranje: 30 x 10 kosov  v vrečki = 300 v škatli</p>
+        <p class="product-price">0.28 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/PI7ZuQO.jpeg" alt="Zidni vložek ZVRM 4 MG" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVRM 4 MG</h3>
+        <p class="product-description">Zidni vložek 10 + vijak matična glava.. Pakiranje: 30 x 10 kosov  v vrečki = 300 v škatli</p>
+        <p class="product-price">0.32 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Vm609iG.jpeg" alt="Zidni vložek ZVRM 5 MG" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZVRM 5 MG</h3>
+        <p class="product-description">Zidni vložek 12 + vijak matična glava.. Pakiranje: 15 x 10 kosov  v vrečki = 150 v škatli</p>
+        <p class="product-price">0.65 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/cj2JbdU.jpeg" alt="Navojni vložek plastični 50mm" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Navojni vložek plastični 50mm</h3>
+        <p class="product-description">za stiropor z vijakom</p>
+        <p class="product-price">0.58 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/YgXFLeZ.jpeg" alt="Navojni vložek plastični 80mm " width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Navojni vložek plastični 80mm </h3>
+        <p class="product-description">za stiropor z vijakom</p>
+        <p class="product-price">0.88 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/DRXq9rr.jpeg" alt="Zidni vložek ZV HLD3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV HLD3</h3>
+        <p class="product-description">Plastični vložek za gips plošče</p>
+        <p class="product-price">0.13 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/NT0sf0c.jpeg" alt="Zidni vložek ZV P1 PVC" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV P1 PVC</h3>
+        <p class="product-description">Vložek za gips plošče z vijakom</p>
+        <p class="product-price">0.12 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/wWTLrK1.jpeg" alt="Zidni vložek ZV P3" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV P3</h3>
+        <p class="product-description">Kovinski vložek  za gips plošče z vijakom</p>
+        <p class="product-price">0.34 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/yTwlX6Q.jpeg" alt="Zidni vložek ZV P2" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV P2</h3>
+        <p class="product-description">Kovinski vložek  za gips plošče z vijakom</p>
+        <p class="product-price">0.32 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/7oOEBXw.jpeg" alt="Zidni vložek ZV GBP" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV GBP</h3>
+        <p class="product-description">Kovinski vložek  za gips plošče z vijakom</p>
+        <p class="product-price">0.3 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/I3Hbe3j.jpeg" alt="Zidni vložek ZV M04" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Zidni vložek ZV M04</h3>
+        <p class="product-description">Kovinski vložek  za gips plošče z vijakom</p>
+        <p class="product-price">1.62 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="zidnivlozki" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/T7kKf4h.jpeg" alt="Lestenčna kljuka kovinska  " width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Lestenčna kljuka kovinska  </h3>
+        <p class="product-description">za mavčne plošče</p>
+        <p class="product-price">0.76 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/r79TFWC.jpeg" alt="Križna sponka 60x60 III" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Križna sponka 60x60 III</h3>
+        <p class="product-description">hladno cinkana</p>
+        <p class="product-price">1.22 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/1jX82MN.jpeg" alt="Križna sponka 60x60 III inox" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Križna sponka 60x60 III inox</h3>
+        <p class="product-description">inox</p>
+        <p class="product-price">2.58 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Mm8QM44.jpeg" alt="Objemka Fe/gal 3/8" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka Fe/gal 3/8"</h3>
+        <p class="product-description">Hladno cinkana</p>
+        <p class="product-price">0.86 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/trhI0rk.jpeg" alt="Objemka Fe/gal 1/2" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka Fe/gal 1/2"</h3>
+        <p class="product-description">Hladno cinkana</p>
+        <p class="product-price">0.92 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/AI3KQuG.jpeg" alt="Objemka Fe/gal 3/4" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka Fe/gal 3/4"</h3>
+        <p class="product-description">Hladno cinkana</p>
+        <p class="product-price">0.93 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/VpETg2j.jpeg" alt="Objemka Fe/gal 1" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka Fe/gal 1"</h3>
+        <p class="product-description">Hladno cinkana</p>
+        <p class="product-price">1.06 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/wh8V3tD.jpeg" alt="Objemka 3/8" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka 3/8"</h3>
+        <p class="product-description">Bakrena</p>
+        <p class="product-price">1.99 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/pRTwZvR.jpeg" alt="Objemka 1/2" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka 1/2"</h3>
+        <p class="product-description">Bakrena</p>
+        <p class="product-price">2.13 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/SmVYOxm.jpeg" alt="Objemka 3/4" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka 3/4"</h3>
+        <p class="product-description">Bakrena</p>
+        <p class="product-price">2.34 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/xRkd34e.jpeg" alt="Objemka 1" "="" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Objemka 1"</h3>
+        <p class="product-description">Bakrena</p>
+        <p class="product-price">2.44 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="razvodnicepod" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/4MokIEt.jpeg" alt="Razvodnica za votle stene MB 100x100 s pokrovom" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Razvodnica za votle stene MB 100x100 s pokrovom</h3>
+        <p class="product-description">Pod ometna razvodnica</p>
+        <p class="product-price">2.62 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Pz8yrS3.jpeg" alt="Sponka vrstna MB VSU 70" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Sponka vrstna MB VSU 70</h3>
+        <p class="product-description">Za velike tokove</p>
+        <p class="product-price">4.32 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Pz8yrS3.jpeg" alt="Sponka vrstna MB VSU 95" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Sponka vrstna MB VSU 95</h3>
+        <p class="product-description">Za velike tokove</p>
+        <p class="product-price">4.86 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/Pz8yrS3.jpeg" alt="Sponka vrstna MB VSU 125" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Sponka vrstna MB VSU 125</h3>
+        <p class="product-description">Za velike tokove</p>
+        <p class="product-price">5.32 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/K6bHpGN.jpeg" alt="Sponka vrstna MB VSU 150" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Sponka vrstna MB VSU 150</h3>
+        <p class="product-description">Za velike tokove</p>
+        <p class="product-price">6.22 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/K6bHpGN.jpeg" alt="Sponka vrstna MB VSU 185" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Sponka vrstna MB VSU 185</h3>
+        <p class="product-description">Za velike tokove</p>
+        <p class="product-price">7.22 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div><div class="product-card" data-category="sponkeobjemke" style="">
+        <div class="product-image">
+            <img src="https://i.imgur.com/K6bHpGN.jpeg" alt="Sponka vrstna MB VSU 240" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">Sponka vrstna MB VSU 240</h3>
+        <p class="product-description">Za velike tokove</p>
+        <p class="product-price">7.95 €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    </div></div>
+    </div>
+
+    <div class="modal" id="cartModal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeModal()">×</button>
+            <h2>Obrazec za naročilo</h2>
+            <div id="cart-summary">
+                <h3>Povzetek naročila</h3>
+                <div id="cart-items">
+                    <!-- Cart items will be inserted here dynamically -->
+                </div>
+                <div class="total">
+                    <strong>Skupaj: </strong><span id="cart-total">0,00 €</span>
+                </div>
+            </div>
+            <form action="https://getform.io/f/bdrrkvyb" method="POST" id="checkout-form">
+                <input type="text" name="name" placeholder="Vaše ime" required="">
+                <input type="email" name="email" placeholder="Vaš e-naslov" required="">
+                <textarea name="address" placeholder="Naslov za dostavo" required=""></textarea>
+                <input type="tel" name="phone" placeholder="Telefonska številka" required="">
+                <input type="hidden" name="order_summary" id="order-summary-input">
+                <button type="submit" class="submit-btn">Zaključi naročilo</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="adminModal" style="display: none;">
+        <div class="modal-content">
+            <button class="close-btn" onclick="closeAdminModal()">×</button>
+            <h2>Admin Panel</h2>
+            
+            <div class="admin-sections">
+                <h3>Dodaj nov izdelek</h3>
+                <form id="add-product-form" class="admin-form">
+                    <input type="text" name="product-name" placeholder="Ime izdelka" required="">
+                    <input type="url" name="product-image" placeholder="URL slike" required="">
+                    <textarea name="product-description" placeholder="Opis izdelka" required=""></textarea>
+                    <input type="number" name="product-price" placeholder="Cena (€)" step="0.01" required="">
+                    <select name="product-category" required="">
+                        <option value="">Izberi kategorijo</option>
+                        
+                        
+                    <option value="nerazdelilci">Notranji etažni razdelilci</option><option value="zmomare">Zunanje merilne omare</option><option value="prostostojeceomare">Prostostoječe merilne omare</option><option value="tekaomarice"> Telefonske in kabelske omarice</option><option value="razvodnicepod">Razvodnice podomet</option><option value="razvodnicenad">Razvodnice nadomet</option><option value="zbiralkeiz">Izolirane zbiralke</option><option value="prekritja">Prekritja in pokrovi</option><option value="zidnivlozki">Zidni Vložki</option><option value="sponkeobjemke">Sponke in objemke</option></select>
+                    <button type="submit" class="submit-btn">Dodaj izdelek</button>
+                </form>
+
+                <h3>Dodaj novo kategorijo</h3>
+                <form id="add-category-form" class="admin-form">
+                    <input type="text" name="category-name" placeholder="Ime kategorije" required="">
+                    <input type="text" name="category-id" placeholder="ID kategorije (eng)" required="">
+                    <button type="submit" class="submit-btn">Dodaj kategorijo</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+<script>
+const modal = document.getElementById('cartModal');
+const adminModal = document.getElementById('adminModal');
+const cartItems = new Map(); // Store cart items
+
+function openModal() {
+    updateCartSummary();
+    modal.style.display = 'flex';
+}
+
+function closeModal() {
+    modal.style.display = 'none';
+}
+
+function openAdminModal() {
+    adminModal.style.display = 'flex';
+}
+
+function closeAdminModal() {
+    adminModal.style.display = 'none';
+}
+
+function updateCartSummary() {
+    const cartItemsDiv = document.getElementById('cart-items');
+    const cartTotal = document.getElementById('cart-total');
+    let total = 0;
+    cartItemsDiv.innerHTML = '';
+
+    cartItems.forEach((item, id) => {
+        const itemTotal = item.price * item.quantity;
+        total += itemTotal;
+
+        cartItemsDiv.innerHTML += `
+            <div class="cart-item" data-id="${id}">
+                <span>${item.name}</span>
+                <div class="cart-item-quantity">
+                    <span>${item.price} €</span>
+                    <input type="number" 
+                           class="quantity-input" 
+                           value="${item.quantity}" 
+                           min="1" 
+                           onchange="updateQuantity('${id}', this.value)">
+                    <button onclick="removeItem('${id}')">&times;</button>
+                </div>
+            </div>
+        `;
+    });
+
+    const tax = total * 0.22;
+    const totalWithTax = total + tax;
+
+    // Update the cart summary HTML to include both totals
+    const summaryHTML = `
+        <div class="total-section">
+            <div class="subtotal">
+                <strong>Znesek brez DDV: </strong><span>${total.toFixed(2)} €</span>
+            </div>
+            <div class="tax">
+                <strong>DDV (22%): </strong><span>${tax.toFixed(2)} €</span>
+            </div>
+            <div class="total-with-tax">
+                <strong>Skupaj z DDV: </strong><span>${totalWithTax.toFixed(2)} €</span>
+            </div>
+        </div>
+    `;
+
+    document.querySelector('.total').innerHTML = summaryHTML;
+    
+    // Update hidden input for form submission
+    const orderSummary = Array.from(cartItems.values())
+        .map(item => `${item.name} (${item.quantity}) - ${item.price * item.quantity} €`)
+        .join('\n');
+    document.getElementById('order-summary-input').value = 
+        `${orderSummary}\n\nVmesna vsota: ${total.toFixed(2)} €\nDDV (22%): ${tax.toFixed(2)} €\nSkupaj z DDV: ${totalWithTax.toFixed(2)} €`;
+}
+
+function updateCartBadge() {
+    const cartIcon = document.querySelector('.cart-icon');
+    const totalItems = Array.from(cartItems.values()).reduce((sum, item) => sum + item.quantity, 0);
+    
+    cartIcon.setAttribute('data-items', totalItems);
+    cartIcon.classList.toggle('has-items', totalItems > 0);
+}
+
+function updateQuantity(id, quantity) {
+    if (cartItems.has(id)) {
+        cartItems.get(id).quantity = parseInt(quantity);
+        updateCartSummary();
+        updateCartBadge(); // Add this line
+    }
+}
+
+function removeItem(id) {
+    cartItems.delete(id);
+    updateCartSummary();
+    updateCartBadge(); // Add this line
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        closeModal();
+    }
+    if (event.target == adminModal) {
+        closeAdminModal();
+    }
+}
+
+const addToCartButtons = document.querySelectorAll('.add-to-cart');
+addToCartButtons.forEach(button => {
+    button.addEventListener('click', () => {
+        const product = button.parentElement;
+        const productName = product.querySelector('.product-title').textContent;
+        const productPrice = parseFloat(product.querySelector('.product-price').textContent.replace(' €', ''));
+        const productId = productName.toLowerCase().replace(' ', '-');
+
+        if (cartItems.has(productId)) {
+            cartItems.get(productId).quantity += 1;
+        } else {
+            cartItems.set(productId, {
+                name: productName,
+                price: productPrice,
+                quantity: 1
+            });
+        }
+        
+        updateCartBadge(); // Add this line
+        
+        button.textContent = 'Dodano!';
+        button.style.background = '#5C7EC7'; // Changed from '#27ae60'
+        setTimeout(() => {
+            button.textContent = 'Dodaj v košarico';
+            button.style.background = '#7198E5'; // Changed from '#2ecc71'
+        }, 1000);
+    });
+});
+
+// Category filtering functionality
+const categoryButtons = document.querySelectorAll('.category-btn');
+const products = document.querySelectorAll('.product-card');
+
+function filterProducts(category) {
+    const products = document.querySelectorAll('.product-card');
+    products.forEach(product => {
+        if (category === 'all' || category === product.getAttribute('data-category')) {
+            product.style.display = '';
+        } else {
+            product.style.display = 'none';
+        }
+    });
+}
+
+// Update the add product form submission handler
+document.getElementById('add-product-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const productData = {
+        name: formData.get('product-name'),
+        image: formData.get('product-image'),
+        description: formData.get('product-description'),
+        price: parseFloat(formData.get('product-price')),
+        category: formData.get('product-category')
+    };
+
+    // Create new product card
+    const productCard = document.createElement('div');
+    productCard.className = 'product-card';
+    productCard.setAttribute('data-category', productData.category); // Set the specific category
+    
+    productCard.innerHTML = `
+        <div class="product-image">
+            <img src="${productData.image}" alt="${productData.name}" width="100%" height="100%">
+        </div>
+        <h3 class="product-title">${productData.name}</h3>
+        <p class="product-description">${productData.description}</p>
+        <p class="product-price">${productData.price} €</p>
+        <button class="add-to-cart">Dodaj v košarico</button>
+    `;
+
+    // Add the new product to the products grid
+    document.querySelector('.products').appendChild(productCard);
+    
+    // Initialize add to cart functionality for the new product
+    initializeAddToCart(productCard.querySelector('.add-to-cart'));
+    
+    // Check current category selection and apply filtering
+    const activeCategory = document.querySelector('.category-btn.active').getAttribute('data-category');
+    if (activeCategory !== 'all' && activeCategory !== productData.category) {
+        productCard.style.display = 'none';
+    }
+    
+    // Reset form and close modal
+    e.target.reset();
+    closeAdminModal();
+});
+
+// Update the category button click handlers
+categoryButtons.forEach(button => {
+    button.addEventListener('click', function() {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const selectedCategory = this.getAttribute('data-category');
+        filterProducts(selectedCategory);
+    });
+});
+
+// Handle new category submission
+document.getElementById('add-category-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const formData = new FormData(e.target);
+    const categoryName = formData.get('category-name');
+    const categoryId = formData.get('category-id');
+
+    // Create new category button
+    const categoryBtn = document.createElement('button');
+    categoryBtn.className = 'category-btn';
+    categoryBtn.setAttribute('data-category', categoryId);
+    categoryBtn.textContent = categoryName;
+
+    // Add click event listener to new category button
+    categoryBtn.addEventListener('click', function() {
+        categoryButtons.forEach(btn => btn.classList.remove('active'));
+        this.classList.add('active');
+        
+        const selectedCategory = this.getAttribute('data-category');
+        filterProducts(selectedCategory);
+    });
+
+    // Add new category to categories container
+    const adminBtn = document.querySelector('.admin-btn');
+    adminBtn.parentNode.insertBefore(categoryBtn, adminBtn);
+
+    // Add new category to product form select
+    const select = document.querySelector('[name="product-category"]');
+    const option = document.createElement('option');
+    option.value = categoryId;
+    option.textContent = categoryName;
+    select.appendChild(option);
+
+    // Reset form and close modal
+    e.target.reset();
+    closeAdminModal();
+});
+
+function initializeAddToCart(button) {
+    button.addEventListener('click', () => {
+        const product = button.parentElement;
+        const productName = product.querySelector('.product-title').textContent;
+        const productPrice = parseFloat(product.querySelector('.product-price').textContent.replace(' €', ''));
+        const productId = productName.toLowerCase().replace(' ', '-');
+
+        if (cartItems.has(productId)) {
+            cartItems.get(productId).quantity += 1;
+        } else {
+            cartItems.set(productId, {
+                name: productName,
+                price: productPrice,
+                quantity: 1
+            });
+        }
+        
+        button.textContent = 'Dodano!';
+        button.style.background = '#5C7EC7';
+        setTimeout(() => {
+            button.textContent = 'Dodaj v košarico';
+            button.style.background = '#7198E5';
+        }, 1000);
+    });
+}
+
+function copySourceCode() {
+    // Get the entire HTML document
+    const fullCode = document.documentElement.outerHTML;
+    
+    // Create a temporary textarea element to hold the code
+    const textarea = document.createElement('textarea');
+    textarea.value = fullCode;
+    document.body.appendChild(textarea);
+    
+    // Select and copy the text
+    textarea.select();
+    try {
+        document.execCommand('copy');
+        // Show success feedback
+        const copyBtn = document.querySelector('.copy-btn');
+        const originalText = copyBtn.textContent;
+        copyBtn.textContent = 'Kopirano!';
+        setTimeout(() => {
+            copyBtn.textContent = originalText;
+        }, 2000);
+    } catch (err) {
+        console.error('Failed to copy code:', err);
+    } finally {
+        // Remove the temporary textarea
+        document.body.removeChild(textarea);
+    }
+}
+</script>
+</body></html>
